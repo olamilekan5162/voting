@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Voting App</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.user-actions {
+  max-width: 800px;
+  height: 20px;
+  background-color: white;
+  margin-bottom: 2%;
+  padding: 20px;
+  align-items: center;
+  text-align: center;
+}
+
+.polls {
+  margin-top: 20px;
+}
+
+.poll {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+  
+}
+
+h1 {
+  text-align: center;
+}
+
+form {
+  margin-top: 10px;
+}
+
+input[type="radio"] {
+  margin-right: 10px;
+}
+
+button {
+  padding: 8px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+img {
+  height: 200px;
+
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="user-actions">
+      <a href="{% url 'login' %}">Login</a>
+      <a href="{% url 'register' %}">Register</a>
+      <a href="{% url 'logout' %}">Logout</a>
+    </div>
+    <h1>Welcome {{user.username}} to the Voting App!</h1>
+    {% for message in messages %}
+    <h4 style="color: red; text-align: center;">{{message}}</h4>
+    {% endfor %}
+    {% for vote in voting %}
+    <div class="polls">
+      <div class="poll">
+        <table>
+          <tr><td><h3>{{vote.name}}</h3></td></tr>
+          <tr>
+            <td><img src="media/{{vote.image}}" alt="image of {{vote.name}}"></td>
+            <td style="float: inline-start;">{{vote.desc}}</td>
+          </tr>
+          <tr>
+            <td>
+              <form action="{% url 'vote' vote.id %}" method="post">
+              {% csrf_token %}
+              <button name="vote_count" value="1" id="vote" type="submit">Vote</button>
+            </form>   
+            <h5>Vote count: {{vote.count}}</h5>
+
+          </td>
+          </tr>
+        </table>
+        
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+</html>
