@@ -85,11 +85,11 @@ WSGI_APPLICATION = 'voting.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres.yykvgphqdowkxnjzvmxv',
-        'PASSWORD': 'Olamilekan@2000',
-        'HOST': 'aws-0-eu-central-1.pooler.supabase.com',
-        'PORT': '5432',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': '6ab65G*a61BF133EA-EbFgcfF12365Ag',
+        'HOST': 'monorail.proxy.rlwy.net',
+        'PORT': '15018',
     }
 }
 
